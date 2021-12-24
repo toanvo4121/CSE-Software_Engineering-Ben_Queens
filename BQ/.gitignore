@@ -1,3 +1,5 @@
 
 node_modules/
-.eslintcache
+.env
+/frontend/build
+/frontend/.eslintcache
