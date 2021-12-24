@@ -1,0 +1,80 @@
+import bcrypt from "bcryptjs";
+
+const users = [
+  {
+    name: "Admin User",
+    userName: "admin",
+    email: "admin@gmail.com",
+    phoneNumber: "0365480412",
+    gender: "None",
+    password: bcrypt.hashSync("123456", 10),
+    isAdmin: true,
+  },
+  {
+    name: "Clerk User",
+    userName: "clerk",
+    email: "clerk@gmail.com",
+    phoneNumber: "0365480412",
+    gender: "None",
+    password: bcrypt.hashSync("123456", 10),
+    isClerk:true,
+  },
+  {
+    name: "na@gmail.com",
+    userName: "depgai",
+    email: "na@gmail.com",
+    phoneNumber: "036480412",
+    gender: "Female",
+    password: bcrypt.hashSync("123456", 10),
+  },
+  {
+    name: "Luan",
+    userName: "xau",
+    email: "luan@gmail.com",
+    phoneNumber: "036512",
+    gender: "male1",
+    password: bcrypt.hashSync("123456", 10),
+  },
+  {
+    userName: "Cuong",
+    name: "Cuong",
+    email: "cuong@gmail.com",
+    phoneNumber: "03652",
+    gender: "Male",
+    password: bcrypt.hashSync("123456", 10),
+  },
+  {
+    userName: "toan",
+    name: "Toan",
+    email: "toan@gmail.com",
+    phoneNumber: "03654804",
+    gender: "Male",
+    password: bcrypt.hashSync("123456", 10),
+  },
+  {
+    userName: "linh",
+    name: "Linh",
+    email: "linh@gmail.com",
+    phoneNumber: "036548041",
+    gender: "Male",
+    password: bcrypt.hashSync("123456", 10),
+  },
+  {
+    userName: "Dat",
+    name: "Dat",
+    email: "dat@gmail.com",
+    phoneNumber: "036548412",
+    gender: "Male",
+    password: bcrypt.hashSync("123456", 10),
+  },
+  {
+    userName: "hieu",
+    name: "Hieu",
+    email: "hieu@gmail.com",
+    phoneNumber: "036540412",
+    gender: "Male",
+    password: bcrypt.hashSync("123456", 10),
+  },
+];
+
+export default users;

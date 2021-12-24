@@ -1,0 +1,19 @@
+
+.justify-content-md-center{
+    background-color: #fff;
+    width: 50%;
+    margin-left: 25%;
+    border-radius: 30px;
+    margin-top: 120px;
+    padding: 10px 20px;
+    height: max-content;
+    margin-bottom: 181px;
+    padding: 15px 0px;
+}
+.btn-primary{
+    margin: 10px 0px;
+}
+.col-12 h1{
+    font-size: 30px;
+    font-weight: 600;
+}
