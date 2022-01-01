@@ -9,26 +9,26 @@ import { listProducts } from "../actions/productActions";
 import Advertisement from "../components/Advertisement";
 
 const HomeScreen = ({ match }) => {
-  const keyword = match.params.keyword
-  const dispatch = useDispatch();
+	const keyword = match.params.keyword
+	const dispatch = useDispatch();
 
-  const productList = useSelector((state) => state.productList || {});
+	const productList = useSelector((state) => state.productList || {});
 
-  const { loading, error, products } = productList;
-
-
-
-  useEffect(() => {
-    dispatch(listProducts(keyword));
-  }, [dispatch, keyword]);
+	const { loading, error, products } = productList;
 
 
-  return (
-    <>
-      <Advertisement />
-      <ListBrand />
-    </>
-  );
+
+	useEffect(() => {
+		dispatch(listProducts(keyword));
+	}, [dispatch, keyword]);
+
+
+	return (
+		<>
+			<Advertisement />
+			<ListBrand />
+		</>
+	);
 };
 
 export default HomeScreen;

@@ -20,9 +20,9 @@ const OrderScreen = ({ match }) => {
   const { order, loading, error } = orderDetails;
 
   const orderPay = useSelector((state) => state.orderPay);
-  const { loading:loadingPay, success:successPay } = orderPay;
+  const { loading: loadingPay, success: successPay } = orderPay;
 
-  console.log("order",order);
+  console.log("order", order);
 
   if (!loading) {
     //Calculate prices
@@ -47,18 +47,18 @@ const OrderScreen = ({ match }) => {
       document.body.appendChild(script)
     }
 
-    if(!order || successPay || order._id !== orderId){
+    if (!order || successPay || order._id !== orderId) {
       dispatch({ type: ORDER_PAY_RESET })
       dispatch(getOrderDetails(orderId));
-    } else if(!order.isPay){
-      if(!window.paypal){
+    } else if (!order.isPay) {
+      if (!window.paypal) {
         addPayPalScript()
       } else {
         setSdkReady(true)
       }
     }
-  
-  }, [dispatch,orderId,successPay,order]);
+
+  }, [dispatch, orderId, successPay, order]);
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult)
@@ -89,23 +89,23 @@ const OrderScreen = ({ match }) => {
                 {order.shippingAddress.postalCode},{" "}
                 {order.shippingAddress.country}
               </p>
-              {order.status ==="Đã giao hàng"?(
-                  <Message variant = 'success'>Delivered {order.deliveredAt}</Message>
-              ):(
-                  <Message variant = 'danger'>Not Delivered</Message>
+              {order.status === "Đã giao hàng" ? (
+                <Message variant='success'>Delivered {order.deliveredAt}</Message>
+              ) : (
+                <Message variant='danger'>Not Delivered</Message>
               )}
             </ListGroup.Item>
 
             <ListGroup.Item>
               <h2> Hình thức thanh toán</h2>
               <p>
-              <strong>Hình thức: </strong>
-              {order.paymentMethod}
+                <strong>Hình thức: </strong>
+                {order.paymentMethod}
               </p>
-              {order.isPaid?(
-                  <Message variant = 'success'>Paid </Message>
-              ):(
-                  <Message variant = 'danger'>Not Paid</Message>
+              {order.isPaid ? (
+                <Message variant='success'>Paid </Message>
+              ) : (
+                <Message variant='danger'>Not Paid</Message>
               )}
             </ListGroup.Item>
 
@@ -168,20 +168,20 @@ const OrderScreen = ({ match }) => {
                   <Col>{order.totalPrice} VND</Col>
                 </Row>
               </ListGroup.Item>
-              {!order.isPaid && (order.paymentMethod === "PayPal")&& (
+              {!order.isPaid && (order.paymentMethod === "PayPal") && (
                 <ListGroup.Item>
-                  {loadingPay && <Loader/> }
-                  {!sdkReady ? <Loader/> : (
+                  {loadingPay && <Loader />}
+                  {!sdkReady ? <Loader /> : (
                     <PayPalButton amount={(parseInt(order.totalPrice / 23000))}
-                    onSuccess={successPaymentHandler}/>
+                      onSuccess={successPaymentHandler} />
                   )}
                 </ListGroup.Item>
               )}
               {order.paymentMethod === "Trực tiếp" && (
-                <Message variant = 'success' ><div style={{width:"100%"}}><p style={{textAlign:"center"}}>PLEASE PAY FOR RECEPTIONIST</p></div></Message>
+                <Message variant='success' ><div style={{ width: "100%" }}><p style={{ textAlign: "center" }}>PLEASE PAY FOR RECEPTIONIST</p></div></Message>
               )}
             </ListGroup>
-            
+
           </Card>
         </Col>
       </Row>

@@ -18,32 +18,32 @@ const LoginScreen = ({ location, history }) => {
   const { loading, error, userInfo } = userLogin;
 
   const userDetails = useSelector((state) => state.userDetails);
-  const {  user } = userDetails;
- 
+  const { user } = userDetails;
+
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   useEffect(() => {
     if (userInfo) {
-      if(!loading){
+      if (!loading) {
         dispatch(listMyCart())
       }
-      if(userInfo.isAdmin){
+      if (userInfo.isAdmin) {
         history.push('/admin/brand')
       }
-      else if (userInfo.isClerk){
+      else if (userInfo.isClerk) {
         history.push('/clerk')
       }
-      else{
-         history.push(redirect);
+      else {
+        history.push(redirect);
       }
     }
-    
-  }, [dispatch, history, userInfo, redirect, user ]);
 
-  
+  }, [dispatch, history, userInfo, redirect, user]);
 
- 
+
+
+
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(userName, password));
@@ -91,11 +91,11 @@ const LoginScreen = ({ location, history }) => {
         </Col>
       </Row>
       <Row>
-      <Col>
-        Forgot password?{" "}
-        <Link to={`/forgotpass`}>
-          Reset it
-        </Link>
+        <Col>
+          Forgot password?{" "}
+          <Link to={`/forgotpass`}>
+            Reset it
+          </Link>
         </Col>
       </Row>
     </FormContainer>

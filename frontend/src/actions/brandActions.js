@@ -83,12 +83,13 @@ export const listProductsOfBrand = (pathName) => async (dispatch) => {
       payload: ans,
     });
   */
-  dispatch({ type: BRAND_LIST_PRODUCTS_REQUEST });
+    dispatch({ type: BRAND_LIST_PRODUCTS_REQUEST });
     const { data } = await axios.get(`/api/brands/getproducts/${pathName}`);
     dispatch({
       type: BRAND_LIST_PRODUCTS_SUCCESS,
       payload: data,
-    });} catch (error) {
+    });
+  } catch (error) {
     dispatch({
       type: BRAND_LIST_PRODUCTS_FAIL,
       payload:
@@ -217,8 +218,8 @@ export const deleteBrand = (brandPathName) => async (dispatch, getState) => {
     dispatch({
       type: DELETE_BRAND_FAIL,
       payload: error.response && error.response.data.message
-      ? error.response.data.message
-      : error.message,
+        ? error.response.data.message
+        : error.message,
     })
   }
 };
@@ -230,7 +231,7 @@ export const deleteCategory = (catePathName) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo },
     } = getState();
- const config = {
+    const config = {
       headers: {
         "Content-type": "application/json",
         Authorization: `Bearer ${userInfo.token}`,
@@ -245,8 +246,8 @@ export const deleteCategory = (catePathName) => async (dispatch, getState) => {
     dispatch({
       type: DELETE_CATEGORY_FAIL,
       payload: error.response && error.response.data.message
-      ? error.response.data.message
-      : error.message,
+        ? error.response.data.message
+        : error.message,
     })
   }
 };

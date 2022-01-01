@@ -1,19 +1,19 @@
 import mongoose from 'mongoose';
 
 const TableSchema = mongoose.Schema({
-    number: {
-        type: Number,
-        required: true
-    },
-    timeList: [{
-        type: Number
-    }],
-    brand: {
-        type: String,
-        required: true,
-    },
-},{
-    timestamps: true
+	number: {
+		type: Number,
+		required: true
+	},
+	timeList: [{
+		type: Number
+	}],
+	brand: {
+		type: String,
+		required: true,
+	},
+}, {
+	timestamps: true
 })
 
 

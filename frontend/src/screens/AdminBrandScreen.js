@@ -5,50 +5,50 @@ import { LinkContainer } from 'react-router-bootstrap'
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
-import {  listCate, listBrands, deleteCategory } from "../actions/brandActions";
+import { listCate, listBrands, deleteCategory } from "../actions/brandActions";
 import { Link } from 'react-router-dom'
 
 const AdminBrandScreen = ({ history, match }) => {
-    
+
     const dispatch = useDispatch();
 
     const userDetails = useSelector((state) => state.userDetails);
     const { loading, error, user } = userDetails;
 
-  
+
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
     const brandList = useSelector((state) => state.brandList || {})
-    const { loading: loadingBrands, error: errorBrands, brands} = brandList
+    const { loading: loadingBrands, error: errorBrands, brands } = brandList
 
     const deleteOneCategory = useSelector((state) => state.deleteOneCategory)
-    const {success: successDeleteCate} = deleteOneCategory
+    const { success: successDeleteCate } = deleteOneCategory
 
     const addOneCategory = useSelector((state) => state.addOneCategory)
-    const {success: successAddCate} = addOneCategory
+    const { success: successAddCate } = addOneCategory
 
 
     const cateList = useSelector((state) => state.cateList || {})
-    const { loading: loadingCates, error: errorCates, categoryList} = cateList
+    const { loading: loadingCates, error: errorCates, categoryList } = cateList
     console.log(categoryList)
     console.log(match.params.name)
 
     useEffect(() => {
-      if (!userInfo) {
-        history.push("/login");
-      }
-      else {
-        if (!user?.name) {
-          dispatch(getUserDetails('profile'));
-        } 
-        console.log('listcase')
-        dispatch(listCate(match.params.name))
-        dispatch(listBrands());
-        
-    }
-    }, [dispatch,match, history, userInfo, user, successDeleteCate, successAddCate]);
-  
+        if (!userInfo) {
+            history.push("/login");
+        }
+        else {
+            if (!user?.name) {
+                dispatch(getUserDetails('profile'));
+            }
+            console.log('listcase')
+            dispatch(listCate(match.params.name))
+            dispatch(listBrands());
+
+        }
+    }, [dispatch, match, history, userInfo, user, successDeleteCate, successAddCate]);
+
 
     const removeCateHandler = (catePathName) => {
         console.log("delete cate")
@@ -63,15 +63,15 @@ const AdminBrandScreen = ({ history, match }) => {
                         <Col>
                             <div className="admin-categ">
                                 <div className="admin-categ-header">
-                                   
-                                        <button type="button" className="add-brand-btn"><Link to={'/admin/brand'}>Back </Link></button>
-                                  
-                                  
-                                        <h2>{`Catagorys of ${match.params.name}`}</h2>
-                                   
-                                
-                                        <button type="button" className="add-brand-btn"><Link to={`/admin/add/category/${match.params.name}`}>Add Category + </Link></button>
-                                  
+
+                                    <button type="button" className="add-brand-btn"><Link to={'/admin/brand'}>Back </Link></button>
+
+
+                                    <h2>{`Catagorys of ${match.params.name}`}</h2>
+
+
+                                    <button type="button" className="add-brand-btn"><Link to={`/admin/add/category/${match.params.name}`}>Add Category + </Link></button>
+
                                 </div>
                             </div>
                             <div className="admin-categ">

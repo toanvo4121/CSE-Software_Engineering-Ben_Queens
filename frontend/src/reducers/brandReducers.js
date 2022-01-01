@@ -40,7 +40,7 @@ export const brandListReducers = (state = {}, action) => {
 };
 
 export const cateListReducer = (state = {}, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case CATEGORY_LIST_REQUEST:
       return { loading: true }
     case CATEGORY_LIST_SUCCESS:
@@ -83,7 +83,7 @@ export const productsListOfCateReducers = (
   }
 };
 
-export const addOneBrandReducer = (state ={}, action) => {
+export const addOneBrandReducer = (state = {}, action) => {
   switch (action.type) {
     case CREATE_BRAND_REQUEST:
       return { loading: true }
@@ -96,7 +96,7 @@ export const addOneBrandReducer = (state ={}, action) => {
   }
 }
 
-export const addOneCategoryReducer = (state ={}, action) => {
+export const addOneCategoryReducer = (state = {}, action) => {
   switch (action.type) {
     case CREATE_CATEGORY_REQUEST:
       return { loading: true }
@@ -110,7 +110,7 @@ export const addOneCategoryReducer = (state ={}, action) => {
 }
 
 export const deleteOneBrandReducer = (state = {}, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case DELETE_BRAND_REQUEST:
       return { loading: true }
     case DELETE_BRAND_SUCCESS:
@@ -123,7 +123,7 @@ export const deleteOneBrandReducer = (state = {}, action) => {
 }
 
 export const deleteOneCategoryReducer = (state = {}, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case DELETE_CATEGORY_REQUEST:
       return { loading: true }
     case DELETE_CATEGORY_SUCCESS:

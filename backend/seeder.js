@@ -37,20 +37,20 @@ const importData = async () => {
       return { ...product, user: adminUser };
     });
     const temp = tableReservations.map(resver => {
-      return {...resver, user: userReservation, table: TableReservation1  }
+      return { ...resver, user: userReservation, table: TableReservation1 }
     })
     await TableReservation.insertMany(temp)
     const productList = await Product.insertMany(sampleProducts);
 
     const sampleBrands = brands.map(brand => {
       let listProductID = []
-      for (let i=0; i<productList.length; i++) {
-        if ( productList[i].brandName == brand.brandName) listProductID.push(productList[i]._id)
+      for (let i = 0; i < productList.length; i++) {
+        if (productList[i].brandName == brand.brandName) listProductID.push(productList[i]._id)
       }
       return { ...brand, hasProducts: listProductID }
     })
     await Brand.insertMany(sampleBrands)
-    
+
     console.log("Data Imported!".green.inverse);
     process.exit();
   } catch (error) {
@@ -76,8 +76,8 @@ const destroyData = async () => {
   }
 }
 
-if(process.argv[2] === '-d'){
-    destroyData()
+if (process.argv[2] === '-d') {
+  destroyData()
 } else {
-    importData()
+  importData()
 }

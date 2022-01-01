@@ -1,10 +1,10 @@
 import express from "express";
 const router = express.Router();
 import {
-    getMyCart,
-    updateCart,
+	getMyCart,
+	updateCart,
 } from '../controllers/cartController.js'
-import {protect} from '../middleware/authMiddleware.js'
+import { protect } from '../middleware/authMiddleware.js'
 
 
 router.route('/').get(protect, getMyCart)

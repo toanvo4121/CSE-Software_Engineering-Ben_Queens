@@ -33,7 +33,7 @@ const ProfileScreen = ({ history }) => {
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 
   const updateOrderStatus = useSelector((state) => state.updateOrderStatus);
-  const {success: successUpdateOrder} = updateOrderStatus
+  const { success: successUpdateOrder } = updateOrderStatus
 
   console.log(user)
   useEffect(() => {
@@ -43,7 +43,7 @@ const ProfileScreen = ({ history }) => {
       if (!user?.name) {
         dispatch(getUserDetails('profile'));
         dispatch(listMyOrders())
-        
+
       } else {
         setName(user.name);
         setEmail(user.email);
@@ -52,11 +52,11 @@ const ProfileScreen = ({ history }) => {
         setPhoneNumber(user.phoneNumber);
         setdateOfBirth(user.dateOfBirth);
       }
-      if(successUpdateOrder){
+      if (successUpdateOrder) {
         dispatch(listMyOrders())
       }
     }
-  }, [dispatch, history, userInfo, user,successUpdateOrder]);
+  }, [dispatch, history, userInfo, user, successUpdateOrder]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -89,11 +89,11 @@ const ProfileScreen = ({ history }) => {
               {loading && <Loader />}
               <img src="images/avt.png" alt="avt" />
 
-                </div>
-              <Form onSubmit={submitHandler}>
+            </div>
+            <Form onSubmit={submitHandler}>
 
-                <Form.Group controlId="userName">
-                  <Form.Label>User Name</Form.Label>
+              <Form.Group controlId="userName">
+                <Form.Label>User Name</Form.Label>
                 <Form.Control
                   type="userName"
                   placeholder="user Name"
@@ -113,11 +113,11 @@ const ProfileScreen = ({ history }) => {
               </Form.Group>
 
               <label for="gender">Sex</label>
-        <select name="Gender" id="gender" defaultValue={gender} onChange={(e) => setGender(e.target.value)}>
-          <option value="None" selected={gender=='None' ? true: false}>None</option>
-          <option value="Female" selected={gender=='Female' ? true: false}>Female</option>
-          <option value="Male" selected={gender=='Male' ? true: false}>Male</option>
-        </select>
+              <select name="Gender" id="gender" defaultValue={gender} onChange={(e) => setGender(e.target.value)}>
+                <option value="None" selected={gender == 'None' ? true : false}>None</option>
+                <option value="Female" selected={gender == 'Female' ? true : false}>Female</option>
+                <option value="Male" selected={gender == 'Male' ? true : false}>Male</option>
+              </select>
 
               <Form.Group controlId="phoneNumber">
                 <Form.Label>Phone Number</Form.Label>

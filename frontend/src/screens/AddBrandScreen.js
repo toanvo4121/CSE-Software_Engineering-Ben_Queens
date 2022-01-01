@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {  Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { Form, Button, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
@@ -21,8 +21,8 @@ const AddBranchScreen = ({ location, history }) => {
   const { loading, error, userInfo } = userLogin;
 
   const userDetails = useSelector((state) => state.userDetails);
-  const {  user } = userDetails;
- 
+  const { user } = userDetails;
+
   const uploadFileHandle = async (e) => {
     const file = e.target.files[0]
     const formData = new FormData()
@@ -30,16 +30,16 @@ const AddBranchScreen = ({ location, history }) => {
     setUploading(true)
     console.log(formData)
     try {
-        const config = {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
         }
-        const { data } = await axios.post('/api/upload', formData, config)
-        setImage(data)
-        setUploading(false)
+      }
+      const { data } = await axios.post('/api/upload', formData, config)
+      setImage(data)
+      setUploading(false)
     } catch (error) {
-        setUploading(false)
+      setUploading(false)
     }
   }
 
@@ -49,12 +49,12 @@ const AddBranchScreen = ({ location, history }) => {
     if (!userInfo || !userInfo.isAdmin) {
       history.push('/login')
     }
-    
-  }, [dispatch, history, userInfo, redirect, user ]);
 
-  
+  }, [dispatch, history, userInfo, redirect, user]);
 
- 
+
+
+
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(addNewBrand(

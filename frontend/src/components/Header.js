@@ -61,14 +61,14 @@ function Header() {
         </NavDropdown>
       )}
       {userInfo && userInfo.isClerk && (
-        
+
         <NavDropdown title="Clerk" id="clerkmenu">
           <LinkContainer to="/clerk">
             <NavDropdown.Item>Quản lý order</NavDropdown.Item>
           </LinkContainer>
         </NavDropdown>
       )}
-      
+
 
       <img className="bar" src="images/bar.png" alt="bar" />
     </div>

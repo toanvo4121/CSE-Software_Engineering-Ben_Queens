@@ -70,7 +70,7 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-await axios.post(`/api/products/${productId}/reviews`,review, config
+    await axios.post(`/api/products/${productId}/reviews`, review, config
     );
 
     dispatch({
@@ -87,20 +87,20 @@ await axios.post(`/api/products/${productId}/reviews`,review, config
   }
 };
 
-export const addNewProduct = (name, image, description, price, countInStock, brandPath, catePath) => async(dispatch, getState) => {
+export const addNewProduct = (name, image, description, price, countInStock, brandPath, catePath) => async (dispatch, getState) => {
   try {
     dispatch({
       type: PRODUCT_CREATE_REQUEST
     })
-    const { userLogin: { userInfo } } = getState() 
+    const { userLogin: { userInfo } } = getState()
 
     const config = {
-        headers: {
-            'Content-type': 'application/json',
-            Authorization: `Bearer ${userInfo.token}`
-        }
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`
+      }
     }
-    await axios.post(`/api/products/${brandPath}/${catePath}`, {name, image, description, price, countInStock}, config)
+    await axios.post(`/api/products/${brandPath}/${catePath}`, { name, image, description, price, countInStock }, config)
 
     dispatch({
       type: PRODUCT_CREATE_SUCCESS
@@ -140,8 +140,8 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
     dispatch({
       type: DELETE_PRODUCT_FAIL,
       payload: error.response && error.response.data.message
-      ? error.response.data.message
-      : error.message,
+        ? error.response.data.message
+        : error.message,
     })
   }
 };
@@ -157,8 +157,8 @@ export const updateProduct = (id, product) => async (dispatch, getState) => {
 
     const config = {
       headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${userInfo.token}`,
+        "Content-type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
       },
     };
     await axios.put(`/api/products/${id}`, product, config)

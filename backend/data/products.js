@@ -99,7 +99,7 @@ const products = [
     rating: 2.5,
     numReviews: 12,
   },
-   {
+  {
 
     name: "Latte nóng",
     image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
@@ -112,12 +112,12 @@ const products = [
     rating: 1.5,
     numReviews: 12,
   },
-    {
+  {
 
     name: "Bạc sỉu đá",
     image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
-     ".....",
+      ".....",
     brandName: "Drink",
     category: "coffee",
     price: 55000,
@@ -125,7 +125,7 @@ const products = [
     rating: 1.5,
     numReviews: 12,
   },
-    {
+  {
 
     name: "Cacao nóng",
     image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",

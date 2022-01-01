@@ -30,7 +30,7 @@ const ClerkScreen = ({ history }) => {
   const { loading: loadingOrders, error: errorOrders, orders } = orderList;
 
   const updateOrderStatus = useSelector((state) => state.updateOrderStatus);
-  const {success: successUpdateOrder} = updateOrderStatus
+  const { success: successUpdateOrder } = updateOrderStatus
 
   useEffect(() => {
     if (!userInfo) {
@@ -40,11 +40,11 @@ const ClerkScreen = ({ history }) => {
         dispatch(getUserDetails('profile'));
         dispatch(getOrderList())
       }
-      if(successUpdateOrder){
+      if (successUpdateOrder) {
         dispatch(getOrderList())
       }
     }
-  }, [dispatch, history, userInfo, user,successUpdateOrder]);
+  }, [dispatch, history, userInfo, user, successUpdateOrder]);
 
   const confirmHandler = (id) => {
     console.log("cf")
@@ -56,59 +56,59 @@ const ClerkScreen = ({ history }) => {
     dispatch(updateOrder(id, "Đã thanh toán"))
   };
 
-  return(
-    loading?<></>:(!user?.isClerk?<h1>BẠN KHÔNG CÓ QUYỀN TRUY CẬP VÀO TRANG NÀY !!! </h1>:(<Row style = {{marginTop:"100px"}}>
+  return (
+    loading ? <></> : (!user?.isClerk ? <h1>BẠN KHÔNG CÓ QUYỀN TRUY CẬP VÀO TRANG NÀY !!! </h1> : (<Row style={{ marginTop: "100px" }}>
       <Col md={12}>
         <h2>QUẢN LÝ ĐƠN HÀNG</h2>
-        {loadingOrders ? <Loader/> : errorOrders ? <Message variant='danger'>{errorOrders}</Message> : (
-<div className="clerk-overlay">
-<div className="clerk-list">
-                      <Table striped bordered hover responsive className='table-sm'>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>TOTAL</th>
-                <th>PAID</th>
-                <th>DELIVERED</th>
-                <th>PAID</th>
-                <th>CONFIRM</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map(order => (
-                <tr key={order._id}>
-                  <td>{order._id}</td>
-                  <td>{order.totalPrice}</td>
-                  <td>{order.isPaid ? <i className='fas fa-check' style={{color: 'green'}}></i>: (
-                    <i className='fas fa-times' style={{color: 'red'}}></i>
-                  )}</td>
-                  <td>{order.status=="Đã giao hàng" ?<i className='fas fa-check' style={{color: 'green'}}></i> : (
-                    <i className='fas fa-times' style={{color: 'red'}}></i>
-                  )}</td>
-                  <td>
-                    {order.isPaid?<Button type='button' variant='light' style={{color: 'gray'},{width:'100%'}}>Đã thanh toán</Button>:
-                    <Button type='button'  style={{color: 'green'},{width:'100%'}} onClick={() => confirmPayHandler(order._id)}>Thanh toán</Button>
-                    }
-                  </td>
-                  <td>
-                    {!order.isPaid?<Button type='button' variant='light' style={{color: 'gray'},{width:'100%'}}>Chưa thanh toán</Button>:
-                    order.status === "Chưa xác nhận"?
-                    <Button type='button'  style={{color: 'green'},{width:'100%'}} onClick={() => confirmHandler(order._id)}>Xác nhận</Button>:
-                    <Button type='button' variant='light' style={{color: 'blue'},{width:'100%'}} >Đã xác nhận</Button>
-                    }
-                    
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+        {loadingOrders ? <Loader /> : errorOrders ? <Message variant='danger'>{errorOrders}</Message> : (
+          <div className="clerk-overlay">
+            <div className="clerk-list">
+              <Table striped bordered hover responsive className='table-sm'>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>TOTAL</th>
+                    <th>PAID</th>
+                    <th>DELIVERED</th>
+                    <th>PAID</th>
+                    <th>CONFIRM</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orders.map(order => (
+                    <tr key={order._id}>
+                      <td>{order._id}</td>
+                      <td>{order.totalPrice}</td>
+                      <td>{order.isPaid ? <i className='fas fa-check' style={{ color: 'green' }}></i> : (
+                        <i className='fas fa-times' style={{ color: 'red' }}></i>
+                      )}</td>
+                      <td>{order.status == "Đã giao hàng" ? <i className='fas fa-check' style={{ color: 'green' }}></i> : (
+                        <i className='fas fa-times' style={{ color: 'red' }}></i>
+                      )}</td>
+                      <td>
+                        {order.isPaid ? <Button type='button' variant='light' style={{ color: 'gray' }, { width: '100%' }}>Đã thanh toán</Button> :
+                          <Button type='button' style={{ color: 'green' }, { width: '100%' }} onClick={() => confirmPayHandler(order._id)}>Thanh toán</Button>
+                        }
+                      </td>
+                      <td>
+                        {!order.isPaid ? <Button type='button' variant='light' style={{ color: 'gray' }, { width: '100%' }}>Chưa thanh toán</Button> :
+                          order.status === "Chưa xác nhận" ?
+                            <Button type='button' style={{ color: 'green' }, { width: '100%' }} onClick={() => confirmHandler(order._id)}>Xác nhận</Button> :
+                            <Button type='button' variant='light' style={{ color: 'blue' }, { width: '100%' }} >Đã xác nhận</Button>
+                        }
+
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
           </div>
-</div>
         )}
       </Col>
     </Row>
-  )
-  ))
+    )
+    ))
 }
 
 export default ClerkScreen;

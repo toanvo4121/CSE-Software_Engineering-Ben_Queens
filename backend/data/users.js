@@ -17,7 +17,7 @@ const users = [
     phoneNumber: "0365480412",
     gender: "None",
     password: bcrypt.hashSync("123456", 10),
-    isClerk:true,
+    isClerk: true,
   },
   {
     name: "na@gmail.com",

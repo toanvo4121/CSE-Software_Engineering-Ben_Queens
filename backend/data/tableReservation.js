@@ -1,6 +1,6 @@
 const tableReservations = [
-    {
-        time: 7
-    }
+	{
+		time: 7
+	}
 ]
 export default tableReservations

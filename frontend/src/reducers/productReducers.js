@@ -56,9 +56,9 @@ export const productReviewCreateReducer = (
 ) => {
   switch (action.type) {
     case PRODUCT_CREATE_REVIEW_REQUEST:
-      return { loading: true};
+      return { loading: true };
     case PRODUCT_CREATE_REVIEW_SUCCESS:
-      return { loading: false,success: true};
+      return { loading: false, success: true };
     case PRODUCT_CREATE_REVIEW_FAIL:
       return { loading: false, error: action.payload };
     case PRODUCT_CREATE_REVIEW_RESET:
@@ -68,12 +68,12 @@ export const productReviewCreateReducer = (
   }
 }
 
-export const addOneProductReducer = (state={}, action) => {
-  switch(action.type) {
+export const addOneProductReducer = (state = {}, action) => {
+  switch (action.type) {
     case PRODUCT_CREATE_REQUEST:
       return { loading: true }
     case PRODUCT_CREATE_SUCCESS:
-      return { loading: false, success: true}
+      return { loading: false, success: true }
     case PRODUCT_CREATE_FAIL:
       return { loading: false, error: action.payload }
     default:
@@ -81,21 +81,21 @@ export const addOneProductReducer = (state={}, action) => {
   }
 }
 
-export const deleteOneProductReducer = (state={}, action) => {
-  switch(action.type) {
+export const deleteOneProductReducer = (state = {}, action) => {
+  switch (action.type) {
     case DELETE_PRODUCT_REQUEST:
-      return {loading: true}
+      return { loading: true }
     case DELETE_PRODUCT_SUCCESS:
       return { loading: false, success: true }
     case DELETE_PRODUCT_FAIL:
-      return { loading: false, error: action.payload}
+      return { loading: false, error: action.payload }
     default:
       return state
   }
 }
 
-export const updateOneProductReducer = (state={}, action) => {
-  switch(action.type) {
+export const updateOneProductReducer = (state = {}, action) => {
+  switch (action.type) {
     case UPDATE_PRODUCT_REQUEST:
       return { loading: true }
     case UPDATE_PRODUCT_SUCCESS:

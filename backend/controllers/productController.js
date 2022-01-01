@@ -9,16 +9,16 @@ import User from "../models/userModel.js";
 // @access Public
 
 const getProducts = asyncHandler(async (req, res) => {
-   
+
   const keyword = req.query.keyword ? {
     name: {
       $regex: req.query.keyword,
       $options: 'i'
     }
   } : {}
-  const products = await Product.find({...keyword})
-    
-    res.json(products)
+  const products = await Product.find({ ...keyword })
+
+  res.json(products)
 })
 
 // @desc Fetch single product
@@ -26,14 +26,14 @@ const getProducts = asyncHandler(async (req, res) => {
 // @access Public
 
 const getProductById = asyncHandler(async (req, res) => {
-    const product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params.id);
 
-    if (product) {
-      res.json(product);
-    } else {
-      res.status(404)
-      throw new Error('Product not found')
-    }
+  if (product) {
+    res.json(product);
+  } else {
+    res.status(404)
+    throw new Error('Product not found')
+  }
 })
 
 // @desc Create new review
@@ -72,11 +72,11 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 });
 
-const createProduct = asyncHandler(async(req, res) => {
+const createProduct = asyncHandler(async (req, res) => {
   const { name, image, description, price, countInStock } = req.body
-  const brand = await Brand.findOne({pathName: req.params.brand})
-  const category = await Category.findOne({catePathName: req.params.cate})
-  const admin = await User.findOne({isAdmin: true})
+  const brand = await Brand.findOne({ pathName: req.params.brand })
+  const category = await Category.findOne({ catePathName: req.params.cate })
+  const admin = await User.findOne({ isAdmin: true })
   if (brand && category && category.brandName === brand.pathName) {
     const newProduct = await Product.create({
       user: admin._id,
@@ -103,19 +103,19 @@ const createProduct = asyncHandler(async(req, res) => {
   }
 })
 
-const deleteProductByID = asyncHandler(async(req, res) => {
+const deleteProductByID = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id)
   if (product) {
-      await product.remove()
-      res.json({message: "Product removed"})
+    await product.remove()
+    res.json({ message: "Product removed" })
   }
   else {
-      res.status(404)
-      throw new Error('Product not found')
+    res.status(404)
+    throw new Error('Product not found')
   }
 })
 
-const updateProduct = asyncHandler(async(req, res) => {
+const updateProduct = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id)
   if (product) {
     product.name = req.body.name || product.name
@@ -133,4 +133,4 @@ const updateProduct = asyncHandler(async(req, res) => {
   }
 })
 
-export {getProducts, getProductById, createProductReview, createProduct, deleteProductByID, updateProduct }
+export { getProducts, getProductById, createProductReview, createProduct, deleteProductByID, updateProduct }

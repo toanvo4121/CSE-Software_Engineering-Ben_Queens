@@ -7,7 +7,7 @@ const BrandCart = ({ brand }) => {
   return (
     //
     <div className="brand-info" >
-      <Link to ={`/${brand.brandName}/cart`}>
+      <Link to={`/${brand.brandName}/cart`}>
         <img className="brand-image" src={brand.image} variant="top" />
       </Link>
       <div className="brand-name">

@@ -28,13 +28,13 @@ const HomeScreen = ({ match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <div className="food-overlay">
-                  <div id="food-list">
-          {products.map((product) => (
-            <div key={product._id}>
-              <Product product={product} />
-            </div>
-          ))}
-        </div>
+          <div id="food-list">
+            {products.map((product) => (
+              <div key={product._id}>
+                <Product product={product} />
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </>

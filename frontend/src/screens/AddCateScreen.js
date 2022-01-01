@@ -21,8 +21,8 @@ const AddCateScreen = ({ location, history, match }) => {
   const { loading, error, userInfo } = userLogin;
 
   const userDetails = useSelector((state) => state.userDetails);
-  const {  user } = userDetails;
- 
+  const { user } = userDetails;
+
   const uploadFileHandle = async (e) => {
     const file = e.target.files[0]
     const formData = new FormData()
@@ -30,16 +30,16 @@ const AddCateScreen = ({ location, history, match }) => {
     setUploading(true)
     console.log(formData)
     try {
-        const config = {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
         }
-        const { data } = await axios.post('/api/upload', formData, config)
-        setImage(data)
-        setUploading(false)
+      }
+      const { data } = await axios.post('/api/upload', formData, config)
+      setImage(data)
+      setUploading(false)
     } catch (error) {
-        setUploading(false)
+      setUploading(false)
     }
   }
 
@@ -48,12 +48,12 @@ const AddCateScreen = ({ location, history, match }) => {
   useEffect(() => {
     if (!userInfo || !userInfo.isAdmin) {
       history.push('/login')
-    }    
-  }, [dispatch, history, userInfo, redirect, user ]);
+    }
+  }, [dispatch, history, userInfo, redirect, user]);
 
-  
 
- 
+
+
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(addNewCate(

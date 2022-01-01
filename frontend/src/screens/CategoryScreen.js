@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { Form } from "react-bootstrap";
 import { listProducts } from "../actions/productActions";
-import { listBrands , listProductsOfBrand} from "../actions/brandActions";
+import { listBrands, listProductsOfBrand } from "../actions/brandActions";
 import Brand from "../components/Brand";
-import  Hello from "../components/getListProductOfBrand";
+import Hello from "../components/getListProductOfBrand";
 
 
 const CategoryScreen = () => {
@@ -20,9 +20,9 @@ const CategoryScreen = () => {
   useEffect(() => {
     //dispatch(listProducts());
     dispatch(listBrands());
-   
+
   }, [dispatch]);
-  
+
 
   return (
     <>
@@ -30,15 +30,15 @@ const CategoryScreen = () => {
         {brands.map((brand) => (
           <div key={brand._id}>
             <Brand brand={brand} />
-             <Hello match={brand}/>
+            <Hello match={brand} />
           </div>
         ))}
       </div>
-     
 
-    
+
+
     </>
-     
+
   );
 };
 

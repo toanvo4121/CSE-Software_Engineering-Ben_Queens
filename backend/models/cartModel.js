@@ -10,16 +10,16 @@ const cartSchema = mongoose.Schema(
     orderItems: [
       {
         product: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: "Product",
+          type: mongoose.Schema.Types.ObjectId,
+          required: true,
+          ref: "Product",
         },
-        name: { type: String,  },
-        image: { type: String,  },
-        price: { type: Number,  },
-        countInStock:{ type: Number, },
+        name: { type: String, },
+        image: { type: String, },
+        price: { type: Number, },
+        countInStock: { type: Number, },
         qty: { type: Number, },
-        brandName: {type: String},
+        brandName: { type: String },
       }
     ],
     // orderItems: [

@@ -15,7 +15,7 @@ function ListCategory({ match }) {
   }, [dispatch]);
 
 
-  
+
   return (
     <>
       {loading ? (
@@ -26,7 +26,7 @@ function ListCategory({ match }) {
         <div id="food-list">
           {(categoryList || []).map((cate) => (
             <div key={cate._id}>
-              <Cate cate={cate}/>
+              <Cate cate={cate} />
             </div>
           ))}
         </div>

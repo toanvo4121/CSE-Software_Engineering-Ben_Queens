@@ -9,7 +9,7 @@ import User from "../models/userModel.js";
 const authUser = asyncHandler(async (req, res) => {
   const { userName, password } = req.body;
   const user = await User.findOne({ userName });
-   console.log(user)
+  console.log(user)
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
@@ -36,7 +36,7 @@ const authUser = asyncHandler(async (req, res) => {
 const registerUser = asyncHandler(async (req, res) => {
   const { name, userName, phoneNumber, gender, dateOfBirth, email, password } =
     req.body;
-  const userExists = await User.findOne({ email, userName, phoneNumber});
+  const userExists = await User.findOne({ email, userName, phoneNumber });
 
   if (userExists) {
     res.status(400);
@@ -131,17 +131,17 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-const resetPass = asyncHandler(async(req, res) => {
-    const user = await User.findOne({userName: req.body.userName, email: req.body.email})
-    if (user) {
-        user.password = req.body.password
-        await user.save()
-        res.status(200).json(req.body.password)
-    }
-    else {
-        res.status(401)
-        throw new Error("Username or email invalid!")
-    }
+const resetPass = asyncHandler(async (req, res) => {
+  const user = await User.findOne({ userName: req.body.userName, email: req.body.email })
+  if (user) {
+    user.password = req.body.password
+    await user.save()
+    res.status(200).json(req.body.password)
+  }
+  else {
+    res.status(401)
+    throw new Error("Username or email invalid!")
+  }
 })
 
-export {authUser,registerUser, getUserProfile, updateUserProfile, resetPass}
+export { authUser, registerUser, getUserProfile, updateUserProfile, resetPass }

@@ -1,7 +1,7 @@
 import {
-  USER_LOGIN_REQUEST, 
-  USER_LOGIN_SUCCESS, 
-  USER_LOGIN_FAIL, 
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
+  USER_LOGIN_FAIL,
   USER_LOGOUT,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
@@ -23,49 +23,49 @@ import axios from 'axios'
 import { CART_UPDATE_REQUEST } from "../constants/cartConstant"
 
 
-export const login = (userName, password) => async(dispatch) => {
-    try{
-        dispatch({
-            type: USER_LOGIN_REQUEST
-        })
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-        const {data} = await axios.post('/api/users/login', {userName, password}, config)
-
-        dispatch({
-            type: USER_LOGIN_SUCCESS,
-            payload: data
-
-
-        })
-        localStorage.setItem('userInfo', JSON.stringify(data))
-    
+export const login = (userName, password) => async (dispatch) => {
+  try {
+    dispatch({
+      type: USER_LOGIN_REQUEST
+    })
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
     }
+    const { data } = await axios.post('/api/users/login', { userName, password }, config)
 
-    catch(error) {
-        dispatch({
+    dispatch({
+      type: USER_LOGIN_SUCCESS,
+      payload: data
+
+
+    })
+    localStorage.setItem('userInfo', JSON.stringify(data))
+
+  }
+
+  catch (error) {
+    dispatch({
       type: USER_LOGIN_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
     });
-    }
+  }
 }
 
 export const logout = () => (dispatch) => {
-    localStorage.removeItem('userInfo')
-    dispatch({type: USER_LOGOUT})
-    dispatch({type: USER_DETAILS_RESET})
-    dispatch({type: ORDER_LIST_MY_RESET})
-    dispatch({type: ORDER_PAY_RESET})
+  localStorage.removeItem('userInfo')
+  dispatch({ type: USER_LOGOUT })
+  dispatch({ type: USER_DETAILS_RESET })
+  dispatch({ type: ORDER_LIST_MY_RESET })
+  dispatch({ type: ORDER_PAY_RESET })
 }
 
 
-export const register = (name,userName, email, password, phoneNumber, gender, dateOfBirth) => async (dispatch) => {
+export const register = (name, userName, email, password, phoneNumber, gender, dateOfBirth) => async (dispatch) => {
   try {
     dispatch({
       type: USER_REGISTER_REQUEST,
@@ -79,7 +79,7 @@ export const register = (name,userName, email, password, phoneNumber, gender, da
 
     const { data } = await axios.post(
       "/api/users",
-      {name,userName, email, password, phoneNumber, gender, dateOfBirth },
+      { name, userName, email, password, phoneNumber, gender, dateOfBirth },
       config
     );
 
@@ -109,18 +109,18 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     dispatch({
       type: USER_DETAILS_REQUEST,
     });
-    
-    const userInfo = getState().userLogin.userInfo; 
+
+    const userInfo = getState().userLogin.userInfo;
     const config = {
-      
+
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    
+
     const { data } = await axios.get(`/api/users/${id}`, config);
-   
+
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: data,
@@ -141,8 +141,8 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     dispatch({
       type: USER_UPDATE_PROFILE_REQUEST,
     });
-    const userInfo=getState().userLogin.userInfo;
-   
+    const userInfo = getState().userLogin.userInfo;
+
 
     const config = {
       headers: {
@@ -171,28 +171,28 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 
 export const resetNewPass = (inform) => async (dispatch) => {
   try {
-      dispatch({
-          type: RESET_PASS_REQUEST,
-      });
+    dispatch({
+      type: RESET_PASS_REQUEST,
+    });
 
-      const config = {
-          headers: {
-              "Content-type": "application/json",
-          }
+    const config = {
+      headers: {
+        "Content-type": "application/json",
       }
-      const { data } = await axios.put(`/api/users/reset`, inform, config);
+    }
+    const { data } = await axios.put(`/api/users/reset`, inform, config);
 
-      dispatch({
-          type: RESET_PASS_SUCCESS,
-          payload: data,
-      });
+    dispatch({
+      type: RESET_PASS_SUCCESS,
+      payload: data,
+    });
   } catch (error) {
-      dispatch({
-          type: RESET_PASS_FAIL,
-          payload:
-              error.response && error.response.data.message
-                  ? error.response.data.message
-                  : error.message,
-      });
+    dispatch({
+      type: RESET_PASS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
   }
 };

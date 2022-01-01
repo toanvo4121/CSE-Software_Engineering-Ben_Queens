@@ -34,16 +34,16 @@ const EditProductScreen = ({ history, match }) => {
     setUploading(true)
     console.log(formData)
     try {
-        const config = {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
         }
-        const { data } = await axios.post('/api/upload', formData, config)
-        setImage(data)
-        setUploading(false)
+      }
+      const { data } = await axios.post('/api/upload', formData, config)
+      setImage(data)
+      setUploading(false)
     } catch (error) {
-        setUploading(false)
+      setUploading(false)
     }
   }
 
